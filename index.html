@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For My Beautiful Ishita ❤️ | Will You Be My Valentine?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- GSAP Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    
     <style>
         /* --- CSS Reset & Variables --- */
         :root {
@@ -18,15 +16,21 @@
             --secondary-color: #ff8fa3;
             --accent-color: #ffcc00;
             --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            --glass-bg: rgba(255, 255, 255, 0.92);
+            --glass-bg: rgba(255, 255, 255, 0.95);
             --text-color: #590d22;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            height: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -40,7 +44,8 @@
             align-items: center;
             color: var(--text-color);
             position: relative;
-            padding: 20px;
+            padding: 15px;
+            width: 100%;
         }
 
         /* --- Floating Background Animation --- */
@@ -66,96 +71,85 @@
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translateY(-110vh) scale(1.2) rotate(180deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            100% { transform: translateY(-110vh) scale(1.2) rotate(180deg); opacity: 0; }
         }
 
         /* --- Name Display Header --- */
         .name-header {
             position: fixed;
-            top: 20px;
+            top: 15px;
             left: 0;
             width: 100%;
             text-align: center;
             z-index: 5;
             opacity: 0;
+            padding: 0 15px;
         }
 
         .name-container {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 10px 30px;
+            padding: 10px 25px;
             border-radius: 50px;
             box-shadow: var(--shadow);
             border: 2px solid var(--primary-color);
+            max-width: 90%;
+            overflow: hidden;
         }
 
         .name-text {
             font-family: 'Pacifico', cursive;
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
             background: linear-gradient(45deg, var(--primary-color), #ff0066);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            white-space: nowrap;
         }
 
         .heart-icon {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             animation: heartbeat 1.5s infinite;
         }
 
         @keyframes heartbeat {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
         }
 
         /* --- Main Container & Cards --- */
         .container {
             position: relative;
             z-index: 10;
-            width: 90%;
+            width: 100%;
             max-width: 550px;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 90px;
         }
 
         .card {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
-            padding: 2.8rem;
-            border-radius: 30px;
+            padding: clamp(1.5rem, 4vw, 2.8rem);
+            border-radius: 25px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, opacity 0.5s ease;
             opacity: 0;
             transform: translateY(50px);
             display: none;
             border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .card::before {
@@ -180,18 +174,21 @@
         /* --- Typography --- */
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             color: var(--primary-color);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .personalized-text {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             font-weight: 600;
+            line-height: 1.4;
         }
 
         .sender-name {
@@ -202,35 +199,39 @@
         }
 
         p {
-            font-size: 1.15rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            margin-bottom: 1.5rem;
             color: #555;
             line-height: 1.6;
         }
 
-        /* Find this class in your CSS and update it */
+        /* Cute Image Styling */
         .cute-img {
-            width: 150px;
+            width: clamp(120px, 30vw, 180px);
             height: auto;
-            margin-bottom: 1.5rem;
-            /* Removed the border and box-shadow for a cleaner 'sticker' look */
+            margin: 0 auto 1.5rem;
+            display: block;
             filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
             cursor: pointer;
+            max-width: 100%;
         }
 
         /* --- Buttons --- */
         .btn {
-            padding: 14px 35px;
+            padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 35px);
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
-            margin: 10px;
+            margin: 8px;
             position: relative;
             overflow: hidden;
+            min-width: 120px;
+            width: auto;
+            display: inline-block;
         }
 
         .btn::after {
@@ -246,6 +247,10 @@
 
         .btn:hover::after {
             left: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
         }
 
         .btn-primary {
@@ -264,9 +269,10 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
-            min-height: 100px;
+            gap: 15px;
+            min-height: 80px;
             position: relative;
+            margin-top: 1rem;
         }
 
         .btn-yes {
@@ -287,22 +293,30 @@
         .agreement-list {
             text-align: left;
             background: rgba(255, 255, 255, 0.7);
-            padding: 1.8rem;
-            border-radius: 20px;
-            margin: 1.8rem 0;
+            padding: clamp(1.2rem, 3vw, 1.8rem);
+            border-radius: 18px;
+            margin: 1.5rem 0;
             list-style: none;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
             border-left: 5px solid var(--primary-color);
+            overflow: hidden;
+        }
+
+        .agreement-list h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
         }
 
         .agreement-list li {
-            margin-bottom: 12px;
-            font-size: 1.05rem;
+            margin-bottom: 10px;
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             padding: 8px;
-            border-radius: 10px;
+            border-radius: 8px;
             transition: background 0.3s ease;
+            line-height: 1.4;
         }
 
         .agreement-list li:hover {
@@ -310,24 +324,26 @@
         }
 
         .agreement-list li span {
-            margin-right: 15px;
-            font-size: 1.5rem;
-            min-width: 40px;
+            margin-right: 12px;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            min-width: 35px;
+            flex-shrink: 0;
         }
 
         /* --- Memory Section --- */
         .memory-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
+            margin-top: 1.5rem;
+            padding: 1.2rem;
             background: rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
+            border-radius: 18px;
             border: 2px dashed var(--secondary-color);
         }
 
         .memory-text {
             font-style: italic;
             color: #7b2cbf;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.5;
         }
 
         /* --- Canvas for Confetti --- */
@@ -344,35 +360,28 @@
         /* --- Floating Envelope --- */
         .floating-envelope {
             position: fixed;
-            right: 30px;
-            bottom: 30px;
-            width: 60px;
-            height: 60px;
+            right: 20px;
+            bottom: 20px;
+            width: clamp(50px, 10vw, 60px);
+            height: clamp(50px, 10vw, 60px);
             background: var(--primary-color);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.5);
             cursor: pointer;
             z-index: 15;
             animation: float 3s ease-in-out infinite;
+            touch-action: manipulation;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         /* --- Hidden Message Modal --- */
@@ -382,7 +391,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -390,6 +399,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s ease;
+            padding: 20px;
         }
 
         .message-modal.active {
@@ -399,14 +409,16 @@
 
         .message-content {
             background: white;
-            padding: 2.5rem;
-            border-radius: 25px;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 20px;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
             position: relative;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transform: scale(0.8);
             transition: transform 0.5s ease;
+            max-height: 85vh;
+            overflow-y: auto;
         }
 
         .message-modal.active .message-content {
@@ -415,63 +427,207 @@
 
         .close-modal {
             position: absolute;
-            top: 15px;
+            top: 10px;
             right: 15px;
             background: none;
             border: none;
             font-size: 2rem;
             cursor: pointer;
             color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 101;
         }
 
-        /* --- Responsive Tweaks --- */
+        /* --- Mobile Specific Adjustments --- */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                min-height: 100dvh;
             }
-
+            
+            .container {
+                margin-top: 80px;
+                padding-bottom: 20px;
+            }
+            
             .card {
-                padding: 2rem;
+                padding: 1.5rem;
+                margin-bottom: 20px;
             }
-
-            .name-text {
-                font-size: 1.5rem;
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
             }
-
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                margin: 5px;
+            }
+            
             .floating-envelope {
-                right: 20px;
-                bottom: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                right: 15px;
+                bottom: 15px;
+            }
+            
+            .agreement-list li {
+                align-items: center;
             }
         }
 
         @media (max-width: 480px) {
+            .name-container {
+                padding: 8px 20px;
+            }
+            
+            .name-text {
+                font-size: 1.2rem;
+                gap: 5px;
+            }
+            
+            .heart-icon {
+                font-size: 1.1rem;
+            }
+            
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.8rem;
             }
-
-            .card {
-                padding: 1.5rem;
+            
+            .personalized-text {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
             }
-
+            
+            p {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .cute-img {
+                width: 120px;
+                margin-bottom: 1rem;
+            }
+            
             .btn {
                 padding: 12px 25px;
                 font-size: 1rem;
+                min-width: 110px;
             }
-
-            .name-text {
+            
+            .btn-group {
+                min-height: 70px;
+            }
+            
+            .agreement-list {
+                padding: 1rem;
+            }
+            
+            .agreement-list li {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+            
+            .agreement-list li span {
                 font-size: 1.2rem;
+                min-width: 30px;
+                margin-right: 10px;
+            }
+            
+            .memory-section {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .memory-text {
+                font-size: 0.95rem;
+            }
+            
+            .floating-envelope {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .name-text span:first-child,
+            .name-text span:last-child {
+                font-size: 1.1rem;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .personalized-text {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+            
+            .card {
+                padding: 1.2rem;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                margin-top: 70px;
+            }
+            
+            .card {
+                padding: 1.2rem;
+                margin: 10px auto;
+            }
+            
+            .cute-img {
+                width: 100px;
+            }
+            
+            .btn-group {
+                min-height: 60px;
+            }
+        }
+
+        /* Prevent text selection on buttons */
+        .btn {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Smooth scrolling for iOS */
+        .message-content {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
             }
         }
     </style>
 </head>
-
 <body>
-
     <div class="bg-hearts" id="bg-hearts"></div>
-
     <div class="name-header" id="name-header">
         <div class="name-container">
             <div class="name-text">
@@ -506,12 +662,10 @@
     </div>
 
     <div class="container">
-
         <div id="screen-1" class="card active">
             <h1>Oops... 👀</h1>
-            <p>It looks like you stumbled onto the wrong page, 
-            <p style="font-size: 1rem; margin-top: 10px; font-style: italic;">Or did destiny bring you here just for
-                this moment?</p>
+            <p>It looks like you stumbled onto the wrong page, Ishita.</p>
+            <p style="font-size: 0.95rem; margin-top: 10px; font-style: italic;">Or did destiny bring you here just for this moment?</p>
             <div class="memory-section">
                 <p class="memory-text">"Every moment with you feels like a beautiful story waiting to be told."</p>
             </div>
@@ -547,8 +701,7 @@
             <p class="personalized-text">Ishita, you just made this the happiest day of my life! ❤️</p>
 
             <div class="memory-section">
-                <p class="memory-text">"This will be our first Valentine's together, and I promise to make it
-                    unforgettable!"</p>
+                <p class="memory-text">"This will be our first Valentine's together, and I promise to make it unforgettable!"</p>
             </div>
 
             <div class="agreement-list">
@@ -562,12 +715,9 @@
                 <li><span>🤝</span> Always being there for you, no matter what</li>
             </div>
 
-            <p style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8; font-style: italic;">Signed with all my love,
-                Vihaan</p>
-            <p style="font-size: 1.2rem; color: var(--primary-color); margin-top: 0.5rem; font-weight: 600;">Happy
-                Valentine's Day, my love! 💘</p>
+            <p style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8; font-style: italic;">Signed with all my love, Vihaan</p>
+            <p style="font-size: 1.2rem; color: var(--primary-color); margin-top: 0.5rem; font-weight: 600;">Happy Valentine's Day, my love! 💘</p>
         </div>
-
     </div>
 
     <script>
@@ -579,7 +729,7 @@
             "Pretty please with a cherry on top? 🍒",
             "I'll be really sad... 😭",
             "You don't mean that! 😤",
-            "This is your last chance to change your mind! ⚠️",
+            "This is your last chance! ⚠️",
             "I'm gonna keep asking forever! 😈",
             "Okay, I'll accept maybe as a yes! 😉",
             "Just say yes already! 🥰"
@@ -639,7 +789,28 @@
 
             // Create floating hearts
             createHearts();
+            
+            // Handle mobile viewport height
+            setViewportHeight();
         });
+
+        // Handle mobile viewport height
+        function setViewportHeight() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            
+            // We'll also set a minimum height for the body
+            const body = document.body;
+            const container = document.querySelector('.container');
+            
+            // Calculate available space
+            const headerHeight = document.querySelector('.name-header').offsetHeight;
+            const availableHeight = window.innerHeight - headerHeight - 40; // 40px for padding
+            
+            if (window.innerWidth < 768) {
+                container.style.minHeight = `${availableHeight}px`;
+            }
+        }
 
         // --- Navigation Logic ---
         function nextScreen(currentScreenNum) {
@@ -698,12 +869,17 @@
                             yoyo: true,
                             ease: "power2.inOut"
                         });
+                        
+                        // Scroll to top of card on mobile
+                        if (window.innerWidth < 768) {
+                            screen3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
                     }
                 });
             }
         }
 
-        // --- The "No" Button Logic ---
+        // --- The "No" Button Logic (Mobile Optimized) ---
         function handleNoClick() {
             noClickCount++;
 
@@ -723,18 +899,22 @@
                 }
             });
 
-            // 2. Make Yes Button Bigger with animation
+            // 2. Make Yes Button Bigger with animation (but limit for mobile)
             yesButtonSize += 0.3;
+            const maxButtonSize = window.innerWidth < 480 ? 1.8 : 2.5;
+            yesButtonSize = Math.min(yesButtonSize, maxButtonSize);
+            
             gsap.to(yesBtn, {
                 fontSize: `${yesButtonSize}rem`,
-                padding: `${14 + (yesButtonSize * 2)}px ${35 + (yesButtonSize * 5)}px`,
+                padding: `${Math.min(14 + (yesButtonSize * 2), 30)}px ${Math.min(35 + (yesButtonSize * 5), 80)}px`,
                 duration: 0.5,
                 ease: "back.out(1.7)"
             });
 
-            // 3. Make No Button move and shrink with GSAP
-            const randomX = (Math.random() - 0.5) * 100;
-            const randomY = (Math.random() - 0.5) * 100;
+            // 3. Make No Button move (but less on mobile)
+            const maxMovement = window.innerWidth < 480 ? 50 : 100;
+            const randomX = (Math.random() - 0.5) * maxMovement;
+            const randomY = (Math.random() - 0.5) * maxMovement;
 
             gsap.to(noBtn, {
                 x: randomX,
@@ -755,7 +935,7 @@
 
             // 4. Shake the entire button group
             gsap.to(".btn-group", {
-                x: 10,
+                x: window.innerWidth < 480 ? 5 : 10,
                 duration: 0.1,
                 repeat: 5,
                 yoyo: true,
@@ -793,14 +973,15 @@
         // --- Background Floating Hearts Generator ---
         function createHearts() {
             const container = document.getElementById('bg-hearts');
-            const heartCount = 25;
+            const heartCount = window.innerWidth < 480 ? 15 : 25;
 
             for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-bg');
 
                 // Random properties
-                const size = Math.random() * 25 + 10;
+                const maxSize = window.innerWidth < 480 ? 20 : 25;
+                const size = Math.random() * maxSize + 10;
                 const left = Math.random() * 100;
                 const duration = Math.random() * 6 + 4;
                 const delay = Math.random() * 8;
@@ -824,7 +1005,7 @@
             message.style.position = 'fixed';
             message.style.top = `${Math.random() * 30 + 20}%`;
             message.style.left = `${Math.random() * 60 + 20}%`;
-            message.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            message.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             message.style.padding = '10px 20px';
             message.style.borderRadius = '50px';
             message.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
@@ -832,6 +1013,9 @@
             message.style.fontWeight = '600';
             message.style.color = '#ff4d6d';
             message.style.opacity = '0';
+            message.style.fontSize = window.innerWidth < 480 ? '0.9rem' : '1rem';
+            message.style.maxWidth = '80%';
+            message.style.textAlign = 'center';
 
             document.body.appendChild(message);
 
@@ -863,7 +1047,7 @@
             canvas.height = window.innerHeight;
 
             const pieces = [];
-            const numberOfPieces = 200;
+            const numberOfPieces = window.innerWidth < 480 ? 100 : 200;
             const colors = ['#ff4d6d', '#ff9a9e', '#e0aaff', '#ffd166', '#06d6a0', '#ffcc00', '#9d4edd'];
 
             function newPiece() {
@@ -871,7 +1055,7 @@
                 this.y = Math.random() * canvas.height - canvas.height;
                 this.rotation = Math.random() * 360;
                 this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.size = Math.random() * 12 + 5;
+                this.size = Math.random() * (window.innerWidth < 480 ? 8 : 12) + 5;
                 this.speed = Math.random() * 4 + 2;
                 this.oscillation = Math.random() * 20 + 20;
                 this.oscillationSpeed = Math.random() * 0.05;
@@ -927,10 +1111,12 @@
             const canvas = document.getElementById('confetti-canvas');
             const ctx = canvas.getContext('2d');
 
-            for (let i = 0; i < 20; i++) {
+            const heartCount = window.innerWidth < 480 ? 10 : 20;
+            
+            for (let i = 0; i < heartCount; i++) {
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
-                const size = Math.random() * 15 + 10;
+                const size = Math.random() * (window.innerWidth < 480 ? 10 : 15) + 5;
                 const color = '#ff4d6d';
 
                 drawHeart(ctx, x, y, size, color);
@@ -993,11 +1179,23 @@
             });
         }
 
-        // Handle resize for canvas
+        // Handle resize for canvas and responsiveness
         window.addEventListener('resize', () => {
             const canvas = document.getElementById('confetti-canvas');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            setViewportHeight();
+        });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                setViewportHeight();
+                // Recalculate positions after orientation change
+                const canvas = document.getElementById('confetti-canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }, 100);
         });
 
         // Add click sound effect (optional)
@@ -1009,8 +1207,21 @@
         // Add event listeners for button clicks
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('click', playClickSound);
+            // Add touch feedback for mobile
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Close modal when clicking outside
+        secretMessageModal.addEventListener('click', (e) => {
+            if (e.target === secretMessageModal) {
+                closeMessageModal();
+            }
         });
     </script>
 </body>
-
 </html>
